@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blood Pressure Calculator</title>
+	<style>
+		/* Aquí va el código CSS */
+        * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #f2f2f2;
+  font-family: sans-serif;
+}
+
+.contenedor {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  margin: auto;
+  max-width: 400px;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form div {
+  margin-bottom: 10px;
+}
+
+label {
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="number"] {
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+}
+
+select {
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-size: 16px;
+  padding: 10px;
+}
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+#resultado {
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  color: #333;
+  font-size: 18px;
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+}
+	</style>
+	<script>
+		// Aquí va el código JavaScript
+        const botonCalcular = document.getElementById("calcular");
+const resultado = document.getElementById("resultado");
+
+botonCalcular.addEventListener("click", () => {
+  const genero = document.getElementById("genero").value;
+  const altura = parseInt(document.getElementById("altura").value);
+  const cintura = parseInt(document.getElementById("cintura").value);
+  const cadera = parseInt(document.getElementById("cadera").value);
+
+  if (genero === "hombre") {
+    const porcentajeGrasa = (495 / (1.0324 - 0.19077 * Math.log10(cintura - cadera) + 0.15456 * Math.log10(altura)) - 450).toFixed(2);
+    resultado.textContent = `Tu porcentaje de grasa corporal es ${porcentajeGrasa}%`;
+  } else {
+    const porcentajeGrasa = (495 / (1.29579 - 0.35004 * Math.log10(cintura + cadera - altura) + 0.22100 * Math.log10(altura)) - 450).toFixed(2);
+    resultado.textContent = `Tu porcentaje de grasa corporal es ${porcentajeGrasa}%`;
+  }
+});
+	</script>
+</head>
+<body>
+	<!-- Aquí va el contenido HTML -->
+    <!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Porcentaje de Grasa Corporal</title>
+    <link rel="stylesheet" href="estilos.css">
+  </head>
+  <body>
+    <div class="contenedor">
+      <h1>Calculadora de Porcentaje de Grasa Corporal</h1>
+      <form>
+        <div>
+          <label for="genero">Género:</label>
+          <select id="genero" name="genero">
+            <option value="hombre">Hombre</option>
+            <option value="mujer">Mujer</option>
+          </select>
+        </div>
+        <div>
+          <label for="altura">Altura (cm):</label>
+          <input type="number" id="altura" name="altura" required>
+        </div>
+        <div>
+          <label for="cintura">Cintura (cm):</label>
+          <input type="number" id="cintura" name="cintura" required>
+        </div>
+        <div>
+          <label for="cadera">Cadera (cm):</label>
+          <input type="number" id="cadera" name="cadera" required>
+        </div>
+        <button type="button" id="calcular">Calcular</button>
+      </form>
+      <div id="resultado"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
+</body>
+</html>
